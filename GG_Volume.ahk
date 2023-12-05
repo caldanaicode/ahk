@@ -35,25 +35,18 @@ GGLocations := {
     ChannelsX: [ 667, 847, 1027, 1207 ]
 }
 
+; ╔═══════════════════════════════════════════════════════════════════════════════════╗
+; ║ If SteelSeries GG was installed to a non-standard location, change this variable. ║
+; ╚═══════════════════════════════════════════════════════════════════════════════════╝
+
+GGPath := "C:\Program Files\SteelSeries\GG\SteelSeriesGGClient.exe"
+
+
 ; ╔══════════════════════════════════════════╗
 ; ║   NO CHANGE NECESSARY BELOW THIS POINT   ║
 ; ╚══════════════════════════════════════════╝
 
 GGWindow := "SteelSeries GG"
-
-SetMouse() {
-    CoordMode "Mouse", "Screen"
-    MouseGetPos &x, &y
-    m := { X: x, Y: y }
-    CoordMode "Mouse", "Client"
-    return m
-}
-
-ResetMouse(m) {
-    CoordMode "Mouse", "Screen"
-    MouseMove m.X, m.Y, 0
-    CoordMode "Mouse", "Client"
-}
 
 GGClick(x, y?) {
     if IsSet(y)
@@ -65,8 +58,6 @@ GGClick(x, y?) {
 }
 
 SetVolume(profile) {
-    m := SetMouse()
-
     volRange := GGLocations.Volume0 - GGLocations.Volume100
     For v in profile {
         y := GGLocations.Volume0 - v * volRange
@@ -77,12 +68,11 @@ SetVolume(profile) {
     if CloseGG.Value
         GGClick(GGLocations.CloseButton)
 
-    ResetMouse(m)
 }
 
 SwitchWindow() {
     if not WinExist(GGWindow) {
-        Run "C:\Program Files\SteelSeries\GG\SteelSeriesGGClient.exe"
+        Run GGPath
         Sleep 4000
     }
 
@@ -99,11 +89,9 @@ SwitchProfile(btn, info) {
 }
 
 ToggleMute(btn, info) {
-    m := SetMouse()
     SwitchWindow()
     GGClick(GGLocations.MasterMute)
     btn.Text := (btn.Text == "Mute" ? "Unmute" : "Mute")
-    ResetMouse(m)
 }
 
 VolumeGui := Gui("AlwaysOnTop ToolWindow")
