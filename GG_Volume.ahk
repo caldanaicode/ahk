@@ -1,3 +1,7 @@
+; ╔═════════════════╗
+; ║   Uses AHK v2   ║
+; ╚═════════════════╝
+
 #Warn All
 #SingleInstance Ignore
 SendMode "Input"
@@ -16,9 +20,10 @@ Profiles := {
     None: [ 1.0, 1.0, 1.0, 1.0 ]
 }
 
-; ╔════════════════════════════════════════════════════════════════════════════════════╗
-; ║ May need to change the pixel values here, since screen resolution may be different ║
-; ╚════════════════════════════════════════════════════════════════════════════════════╝
+; ╔═════════════════════════════════════════════════════════════════════════════════════╗
+; ║ May need to change the pixel values here, since screen resolution may be different. ║
+; ║ These are in Client coordinate mode, if using the AHKv2 Window Spy tool.            ║
+; ╚═════════════════════════════════════════════════════════════════════════════════════╝
 
 GGLocations := {
     SonarTab: { X: 178, Y: 226 },
@@ -30,9 +35,9 @@ GGLocations := {
     ChannelsX: [ 667, 847, 1027, 1207 ]
 }
 
-; ╔════════════════════════════════════╗
-; ║   DO NOT CHANGE BELOW THIS POINT   ║
-; ╚════════════════════════════════════╝
+; ╔══════════════════════════════════════════╗
+; ║   NO CHANGE NECESSARY BELOW THIS POINT   ║
+; ╚══════════════════════════════════════════╝
 
 GGWindow := "SteelSeries GG"
 
